@@ -9,7 +9,7 @@ const Card: FC<CardProps> = ({ note }) => {
   const { description, title } = note;
   return (
     <div className="card">
-      <h3 className="title">{title}</h3>
+      <h3 className="title">{title.substring(0, 20)}</h3>
       <p className="body">{description}</p>
     </div>
   );
