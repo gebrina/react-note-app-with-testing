@@ -1,0 +1,11 @@
+.notes {
+  max-width: 800px;
+  margin: auto;
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}

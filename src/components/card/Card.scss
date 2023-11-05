@@ -1,0 +1,32 @@
+.card {
+  padding: 10px 20px;
+  box-shadow: 0.5px 0px 3px 3px rgb(209, 3, 58);
+  filter: drop-shadow(0.1px 0.1px 5px rgb(209, 3, 58));
+  border-radius: 50px 0;
+  letter-spacing: 2px;
+
+  .title {
+    font-size: 25px;
+    text-transform: capitalize;
+  }
+  .body {
+    line-height: 25px;
+    font-weight: 500;
+    padding: 5px;
+    font-size: 17px;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    &:first-letter {
+      font-weight: 700;
+      font-size: 50px;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(209, 3, 58, 0.7);
+    color: rgb(221, 195, 195);
+  }
+}
