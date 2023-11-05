@@ -1,5 +1,11 @@
+import Note from "./components/notes/Note";
+
 const App = () => {
-  return <section></section>;
+  return (
+    <section>
+      <Note />
+    </section>
+  );
 };
 
 export default App;

@@ -1,4 +1,5 @@
 import Form from "../form/Form";
+import "./Note.scss";
 
 const Note = () => {
   return (
