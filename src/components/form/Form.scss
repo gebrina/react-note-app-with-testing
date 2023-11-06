@@ -10,10 +10,13 @@ form {
   flex-direction: column;
   gap: 20px;
   margin-bottom: 50px;
+  textarea {
+    resize: none;
+  }
   textarea,
   input {
     border: none;
-    width: 50%;
+    width: 60%;
     background-color: transparent;
     font-size: 20px;
     padding: 5px 10px;
@@ -27,6 +30,27 @@ form {
 
     @media only screen and (max-width: 600px) {
       width: 90%;
+    }
+  }
+  .btn {
+    all: unset;
+    color: rgb(249, 249, 249);
+    width: 60%;
+    padding: 2px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(152, 3, 90, 1);
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(249, 249, 249);
+      color: rgba(152, 3, 90, 1);
+      border: 1px solid rgba(152, 3, 90, 1);
+      gap: 10px;
     }
   }
 }

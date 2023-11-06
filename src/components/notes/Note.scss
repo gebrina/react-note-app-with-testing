@@ -1,11 +1,27 @@
-.notes {
-  max-width: 800px;
-  margin: auto;
-  display: grid;
-  text-align: center;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
+main {
+  h1 {
+    text-align: center;
+    font-size: 40px;
+    color: rgb(232, 10, 117);
+    text-shadow: 2px 1px rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    svg {
+      text-shadow: rgb(232, 10, 117);
+      fill: rgb(0, 0, 117);
+    }
+  }
+  .notes {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 }

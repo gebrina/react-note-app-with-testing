@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import "./Form.scss";
+import { FaSave } from "react-icons/fa";
 
 const Form = () => {
   const [title, setTitle] = useState("");
@@ -30,10 +31,14 @@ const Form = () => {
       <textarea
         value={note}
         placeholder="Type something"
-        rows={4}
+        rows={5}
+        cols={40}
         onChange={handleNoteChange}
         className="input-filed"
       />
+      <button className="btn">
+        <FaSave /> Save
+      </button>
     </form>
   );
 };
