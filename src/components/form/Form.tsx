@@ -1,10 +1,14 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import "./Form.scss";
 import { FaSave } from "react-icons/fa";
 import { addNote } from "../../utils";
 import { Note } from "../../types/Note";
 
-const Form = () => {
+type FormProps = {
+  setNewNoteAdded: (added: boolean) => void;
+  notes: Note[];
+};
+const Form: FC<FormProps> = ({ setNewNoteAdded, notes }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState<Note>({
@@ -12,31 +16,40 @@ const Form = () => {
     description: null,
   });
 
+  const titleError = "Title, for your note is required!";
+  const descriptionError = "Description, for your note is required!";
+
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const {
       target: { value },
     } = event;
     setDescription(value);
+    value
+      ? setErrors({ ...errors, description: null })
+      : setErrors({ ...errors, description: descriptionError });
   };
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = event;
-
     setTitle(value);
+    value
+      ? setErrors({ ...errors, title: null })
+      : setErrors({ ...errors, title: titleError });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (errors.title && errors.description) {
-      addNote({ title, description });
-    } else if (!errors.title) {
-      setErrors({ ...errors, title: "Title, for your note is required!" });
-    } else {
+    if (title && description) {
+      addNote({ id: notes.length + 1, title, description });
+      setNewNoteAdded(true);
+    } else if (!title) {
+      setErrors({ ...errors, title: titleError });
+    } else if (!description) {
       setErrors({
         ...errors,
-        description: "Description for your note is required!",
+        description: descriptionError,
       });
     }
   };
