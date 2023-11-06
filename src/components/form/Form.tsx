@@ -23,11 +23,14 @@ const Form = () => {
       <input
         type="text"
         value={title}
+        placeholder="Title"
         onChange={handleTitleChange}
         className="input-filed"
       />
       <textarea
         value={note}
+        placeholder="Type something"
+        rows={4}
         onChange={handleNoteChange}
         className="input-filed"
       />
