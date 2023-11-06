@@ -8,13 +8,15 @@ import { Fragment, useEffect, useState } from "react";
 const Note = () => {
   const [notes, setNotes] = useState(getNotes());
   const [newNoteAdded, setNewNoteAdded] = useState(false);
+  const [noteRemoved, setNoteRemoved] = useState(false);
 
   useEffect(() => {
-    if (newNoteAdded) {
+    if (newNoteAdded || noteRemoved) {
       setNotes(getNotes());
       setNewNoteAdded(false);
+      setNoteRemoved(false);
     }
-  }, [newNoteAdded]);
+  }, [newNoteAdded, noteRemoved]);
 
   return (
     <main>
@@ -27,7 +29,7 @@ const Note = () => {
       <section className="notes">
         {notes.map((note) => (
           <Fragment key={note.id}>
-            <Card note={note} />
+            <Card setNoteRemoved={setNoteRemoved} note={note} />
           </Fragment>
         ))}
       </section>
