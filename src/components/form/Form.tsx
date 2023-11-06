@@ -1,12 +1,16 @@
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "./Form.scss";
 import { FaSave } from "react-icons/fa";
 import { addNote } from "../../utils";
+import { Note } from "../../types/Note";
 
 const Form = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const errorsRef = useRef({ title: null, description: null });
+  const [errors, setErrors] = useState<Note>({
+    title: null,
+    description: null,
+  });
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const {
@@ -25,12 +29,15 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (errorsRef.current.title && errorsRef.current.description) {
+    if (errors.title && errors.description) {
       addNote({ title, description });
-    } else if (!errorsRef.current.title) {
-      errorsRef.current.title = "Title, for your note is required!";
+    } else if (!errors.title) {
+      setErrors({ ...errors, title: "Title, for your note is required!" });
     } else {
-      errorsRef.current.description = "Description for your note is required!";
+      setErrors({
+        ...errors,
+        description: "Description for your note is required!",
+      });
     }
   };
 
@@ -44,6 +51,7 @@ const Form = () => {
         onChange={handleTitleChange}
         className="input-filed"
       />
+      {errors.title && <p className="error">{errors.title}</p>}
       <textarea
         aria-label="Insert your note's main description."
         value={description}
@@ -53,6 +61,7 @@ const Form = () => {
         onChange={handleDescriptionChange}
         className="input-filed"
       />
+      {errors.description && <p className="error">{errors.description}</p>}
       <button className="btn">
         <FaSave /> Save
       </button>
