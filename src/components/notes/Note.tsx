@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { FaEdit, FaUserEdit } from "react-icons/fa";
 import Form from "../form/Form";
 import "./Note.scss";
