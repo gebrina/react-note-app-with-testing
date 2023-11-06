@@ -11,7 +11,6 @@ const Form = () => {
     } = event;
     setNote(value);
   };
-
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
