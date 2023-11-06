@@ -1,4 +1,4 @@
-import { FaEdit, FaUserEdit } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEdit, FaUserEdit } from "react-icons/fa";
 import Form from "../form/Form";
 import "./Note.scss";
 import Card from "../card/Card";
@@ -18,6 +18,10 @@ const Note = () => {
     }
   }, [newNoteAdded, noteRemoved]);
 
+  const handleNextPage = () => {};
+
+  const handlePrevPage = () => {};
+
   return (
     <main>
       <h1>
@@ -33,6 +37,10 @@ const Note = () => {
           </Fragment>
         ))}
       </section>
+      <div className="paginator">
+        <FaArrowLeft onClick={handlePrevPage} />
+        <FaArrowRight onClick={handleNextPage} />
+      </div>
     </main>
   );
 };
