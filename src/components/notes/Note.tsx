@@ -6,21 +6,42 @@ import { getNotes } from "../../utils";
 import { Fragment, useEffect, useState } from "react";
 
 const Note = () => {
+  const itemsPerpage = 2;
+  const [noteIndex, setNoteIndex] = useState({ start: 0, end: itemsPerpage });
+
   const [notes, setNotes] = useState(getNotes());
   const [newNoteAdded, setNewNoteAdded] = useState(false);
   const [noteRemoved, setNoteRemoved] = useState(false);
 
   useEffect(() => {
     if (newNoteAdded || noteRemoved) {
-      setNotes(getNotes());
       setNewNoteAdded(false);
       setNoteRemoved(false);
+      setNotes(getNotes());
+      noteRemoved &&
+        setNoteIndex({ start: noteIndex.start - 1, end: noteIndex.end - 1 });
+      newNoteAdded &&
+        setNoteIndex({ start: notes.length - 1, end: getNotes().length });
     }
-  }, [newNoteAdded, noteRemoved]);
+  }, [newNoteAdded, noteRemoved, notes, noteIndex]);
 
-  const handleNextPage = () => {};
+  const handleNextPage = () => {
+    if (noteIndex.end <= notes.length - 1) {
+      setNoteIndex((noteIndex) => ({
+        start: noteIndex.start + itemsPerpage,
+        end: noteIndex.end + itemsPerpage,
+      }));
+    }
+  };
 
-  const handlePrevPage = () => {};
+  const handlePrevPage = () => {
+    if (noteIndex.start > 0) {
+      setNoteIndex((noteIndex) => ({
+        start: noteIndex.start - itemsPerpage,
+        end: noteIndex.end - itemsPerpage,
+      }));
+    }
+  };
 
   return (
     <main>
@@ -31,7 +52,7 @@ const Note = () => {
       <Form setNewNoteAdded={setNewNoteAdded} notes={notes} />
 
       <section className="notes">
-        {notes.map((note) => (
+        {notes.slice(noteIndex.start, noteIndex.end).map((note) => (
           <Fragment key={note.id}>
             <Card setNoteRemoved={setNoteRemoved} note={note} />
           </Fragment>
