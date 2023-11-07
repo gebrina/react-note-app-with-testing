@@ -9,7 +9,7 @@ describe("Note Component Tests", () => {
 
   test("Note component must have a header", () => {
     render(<Note />);
-    const notesHeading = screen.getByRole("heading");
+    const notesHeading = screen.getByRole("heading", { level: 1 });
     expect(notesHeading).toBeInTheDocument();
   });
 });
