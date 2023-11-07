@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Card, { CardProps } from "./Card";
 import { Note } from "../../types/Note";
@@ -26,5 +26,12 @@ describe("Tests for Card Component", () => {
 
     expect(noteTitle).toBeInTheDocument();
     expect(noteDescription).toBeInTheDocument();
+  });
+
+  test("delete button should delete a note", () => {
+    render(<Card {...cardProps} />);
+    const deleteButton = screen.getByTestId("delete-btn");
+    expect(deleteButton).toBeInTheDocument();
+    fireEvent.click(deleteButton);
   });
 });

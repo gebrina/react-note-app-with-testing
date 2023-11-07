@@ -12,6 +12,6 @@ export const getNotes = (): Note[] => JSON.parse(localStorage.getItem("notes"));
 
 export const deleteNote = (id: number) => {
   let notes = getNotes();
-  notes = notes.filter((note) => note.id !== id);
+  notes = notes?.filter((note) => note.id !== id);
   localStorage.setItem("notes", JSON.stringify(notes));
 };

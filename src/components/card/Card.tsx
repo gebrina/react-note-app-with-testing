@@ -20,7 +20,7 @@ const Card: FC<CardProps> = ({ note, setNoteRemoved }) => {
   return (
     <div className="card">
       <button onClick={handleDelete} className="delete-btn">
-        <FaTrash />
+        <FaTrash data-testid="delete-btn" />
       </button>
       <h3 className="title">{title.substring(0, 20)}</h3>
       <p className="body">{description}</p>
