@@ -11,6 +11,10 @@ describe("Tests for Form Component", () => {
 
   test("Form should be rendered", () => {
     render(<Form {...formProps} />);
+  });
+
+  test("form fileds should be rendered", () => {
+    render(<Form {...formProps} />);
     const titleField = screen.getByPlaceholderText(/title/i);
     const descriptionField = screen.getByPlaceholderText(/type something/i);
 

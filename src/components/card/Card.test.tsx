@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Card, { CardProps } from "./Card";
 import { Note } from "../../types/Note";
@@ -16,5 +16,15 @@ describe("Tests for Card Component", () => {
 
   test("Card  should be renderd", () => {
     render(<Card {...cardProps} />);
+  });
+
+  test("Passed note should rendered", () => {
+    render(<Card {...cardProps} />);
+
+    const noteTitle = screen.getByText(note.description);
+    const noteDescription = screen.getByText(note.description);
+
+    expect(noteTitle).toBeInTheDocument();
+    expect(noteDescription).toBeInTheDocument();
   });
 });

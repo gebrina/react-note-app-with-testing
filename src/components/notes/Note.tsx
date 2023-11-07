@@ -13,7 +13,7 @@ const Note = () => {
   const [newNoteAdded, setNewNoteAdded] = useState(false);
   const [noteRemoved, setNoteRemoved] = useState(false);
 
-  const paginatedNotes = notes.slice(noteIndex.start, noteIndex.end);
+  const paginatedNotes = notes?.slice(noteIndex.start, noteIndex.end);
 
   useEffect(() => {
     if (newNoteAdded || noteRemoved) {
@@ -54,7 +54,7 @@ const Note = () => {
       <Form setNewNoteAdded={setNewNoteAdded} notes={notes} />
 
       <section className="notes">
-        {paginatedNotes.map((note) => (
+        {paginatedNotes?.map((note) => (
           <Fragment key={note.id}>
             <Card setNoteRemoved={setNoteRemoved} note={note} />
           </Fragment>
