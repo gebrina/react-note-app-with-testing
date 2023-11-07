@@ -4,7 +4,7 @@ import { FaSave } from "react-icons/fa";
 import { addNote } from "../../utils";
 import { Note } from "../../types/Note";
 
-type FormProps = {
+export type FormProps = {
   setNewNoteAdded: (added: boolean) => void;
   notes: Note[];
 };
