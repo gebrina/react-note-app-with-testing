@@ -28,7 +28,7 @@ const Note = () => {
   }, [newNoteAdded, noteRemoved, notes, noteIndex]);
 
   const handleNextPage = () => {
-    if (noteIndex.end <= notes.length - 1) {
+    if (noteIndex.end <= notes?.length - 1) {
       setNoteIndex((noteIndex) => ({
         start: noteIndex.start + itemsPerpage,
         end: noteIndex.end + itemsPerpage,
@@ -61,8 +61,8 @@ const Note = () => {
         ))}
       </section>
       <div className="paginator">
-        <FaArrowLeft onClick={handlePrevPage} />
-        <FaArrowRight onClick={handleNextPage} />
+        <FaArrowLeft data-testid="prev-btn" onClick={handlePrevPage} />
+        <FaArrowRight data-testid="next-btn" onClick={handleNextPage} />
       </div>
     </main>
   );
