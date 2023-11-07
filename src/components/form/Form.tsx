@@ -44,6 +44,8 @@ const Form: FC<FormProps> = ({ setNewNoteAdded, notes }) => {
     if (title && description) {
       addNote({ id: notes.length + 1, title, description });
       setNewNoteAdded(true);
+      setTitle("");
+      setDescription("");
     } else if (!title) {
       setErrors({ ...errors, title: titleError });
     } else if (!description) {
