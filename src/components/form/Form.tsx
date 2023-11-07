@@ -42,7 +42,7 @@ const Form: FC<FormProps> = ({ setNewNoteAdded, notes }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title && description) {
-      addNote({ id: notes.length + 1, title, description });
+      addNote({ id: notes?.length + 1, title, description });
       setNewNoteAdded(true);
       setTitle("");
       setDescription("");

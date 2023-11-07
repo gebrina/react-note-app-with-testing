@@ -1,14 +1,17 @@
 import { Note } from "../types/Note";
 
 export const addNote = (note: Note) => {
-  const savedNotes = JSON.parse(localStorage.getItem("notes"));
-  if (savedNotes !== "undefined" && savedNotes) {
-    const allNotes = [...savedNotes, note];
-    localStorage.setItem("notes", JSON.stringify(allNotes));
-  }
+  const savedNotes = getNotes();
+
+  const allNotes = [...savedNotes, note];
+  localStorage.setItem("notes", JSON.stringify(allNotes));
 };
 
-export const getNotes = (): Note[] => JSON.parse(localStorage.getItem("notes"));
+export const getNotes = (): Note[] => {
+  const notes = JSON.parse(localStorage.getItem("notes"));
+  if (Array.isArray(notes)) return notes;
+  return [];
+};
 
 export const deleteNote = (id: number) => {
   let notes = getNotes();

@@ -15,6 +15,7 @@ const Note = () => {
 
   const paginatedNotes = notes?.slice(noteIndex.start, noteIndex.end);
 
+  console.log(getNotes());
   useEffect(() => {
     if (newNoteAdded || noteRemoved) {
       setNewNoteAdded(false);
@@ -23,7 +24,7 @@ const Note = () => {
       noteRemoved &&
         setNoteIndex({ start: noteIndex.start - 1, end: noteIndex.end - 1 });
       newNoteAdded &&
-        setNoteIndex({ start: notes.length - 1, end: getNotes().length });
+        setNoteIndex({ start: notes?.length - 1, end: getNotes()?.length });
     }
   }, [newNoteAdded, noteRemoved, notes, noteIndex]);
 
