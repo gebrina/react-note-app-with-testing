@@ -47,10 +47,34 @@ describe("Tests for Form Component", () => {
     });
   });
 
-  test("Save button shoud submit when clicking on it", () => {
+  test("Save button shoud submit when clicking on it", async () => {
     render(<Form {...formProps} />);
     const saveButton = screen.getByRole("button");
     expect(saveButton).toBeInTheDocument();
+    const titleField: HTMLInputElement = screen.getByPlaceholderText(/title/i);
+    const descriptionField: HTMLTextAreaElement =
+      screen.getByPlaceholderText(/type something/i);
+
+    fireEvent.change(titleField, { target: { value: "new title" } });
+    fireEvent.change(descriptionField, {
+      target: { value: "new description" },
+    });
     fireEvent.click(saveButton);
+  });
+
+  test("If form is submitted with empty title, error message should be displayed", () => {
+    render(<Form {...formProps} />);
+    const savebutton = screen.getByRole("button");
+    fireEvent.click(savebutton);
+
+    const titleErrorMessage = screen.getByText(
+      /Title, for your note is required!/i
+    );
+    expect(titleErrorMessage).toBeInTheDocument();
+  });
+
+  test("If form is submitted with valid title only, description error should be displayed", () => {
+    render(<Form {...formProps} />);
+    const saveButton = screen.getByRole("button");
   });
 });
