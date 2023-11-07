@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Form, { FormProps } from "./Form";
 import "@testing-library/jest-dom";
 
@@ -10,9 +10,9 @@ describe("Tests for Form Component", () => {
   };
 
   test("Form should be rendered", () => {
-    const { getByPlaceholderText } = render(<Form {...formProps} />);
-    const titleField = getByPlaceholderText(/title/i);
-    const descriptionField = getByPlaceholderText(/type something/i);
+    render(<Form {...formProps} />);
+    const titleField = screen.getByPlaceholderText(/title/i);
+    const descriptionField = screen.getByPlaceholderText(/type something/i);
 
     expect(titleField).toBeInTheDocument();
     expect(descriptionField).toBeInTheDocument();

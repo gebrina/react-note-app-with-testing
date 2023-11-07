@@ -4,7 +4,7 @@ import "./Card.scss";
 import { FaTrash } from "react-icons/fa";
 import { deleteNote } from "../../utils";
 
-type CardProps = {
+export type CardProps = {
   note: Note;
   setNoteRemoved: (removed: boolean) => void;
 };
