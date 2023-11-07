@@ -76,5 +76,13 @@ describe("Tests for Form Component", () => {
   test("If form is submitted with valid title only, description error should be displayed", () => {
     render(<Form {...formProps} />);
     const saveButton = screen.getByRole("button");
+    const titleFeild = screen.getByPlaceholderText(/title/i);
+
+    fireEvent.change(titleFeild, { target: { value: "new title" } });
+    fireEvent.click(saveButton);
+    const descriptionErrorMsg = screen.getByText(
+      /Description, for your note is required!/i
+    );
+    expect(descriptionErrorMsg).toBeInTheDocument();
   });
 });

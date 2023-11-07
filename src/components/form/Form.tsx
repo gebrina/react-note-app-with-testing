@@ -57,7 +57,7 @@ const Form: FC<FormProps> = ({ setNewNoteAdded, notes }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} data-testid="form">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         aria-label="Insert your note's title"
